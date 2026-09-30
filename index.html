@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#f5f2eb">
+        <meta name="description"
+            content="A complete, illustrated step-by-step guide to installing Ubuntu Desktop from a USB drive.">
+        <title>Ubuntu Installation Guide | English</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet">
+        <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['DM Sans', 'sans-serif'], display: ['Manrope', 'sans-serif'] } } } };</script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <style>
+    :root { color-scheme: light; --ink: #20231f; --paper: #f5f2eb; --orange: #e95420; --green: #356b5b; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; }
+    .guide-grid { background-image: radial-gradient(#cfc9bc 0.65px, transparent 0.65px); background-size: 16px 16px; }
+    .step-card { scroll-margin-top: 96px; }
+    .step-card:nth-of-type(even) .step-image { background: #e8eee7; }
+    .step-card:nth-of-type(odd) .step-image { background: #f4e5d9; }
+    .step-check { accent-color: var(--green); }
+    @media (prefers-reduced-motion: no-preference) {
+      .arrive { animation: arrive .55s ease-out both; }
+      @keyframes arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    }
+    @media print {
+      body { background: white; }
+      header, aside, .no-print, #progress-wrap { display: none !important; }
+      main { max-width: none !important; padding: 0 !important; }
+      .step-card { break-inside: avoid; border-color: #ddd !important; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+    </head>
+    <body>
+        <header
+            class="sticky top-0 z-30 border-b border-[#ded9cf] bg-[#f5f2eb]/95 backdrop-blur">
+            <div
+                class="mx-auto flex h-[66px] max-w-[1440px] items-center justify-between px-5 md:px-10">
+                <a href="#top"
+                    class="flex items-center gap-3 font-display text-[15px] font-extrabold">
+                    <span
+                        class="grid h-9 w-9 place-items-center rounded-full bg-[#e95420] text-white"><i
+                            data-lucide="hard-drive-download"
+                            class="h-[18px] w-[18px]"></i></span>
+                    Ubuntu Install Guide
+                </a>
+                <div class="flex items-center gap-2">
+                    <span
+                        class="hidden text-xs font-semibold text-[#74766f] sm:inline">English
+                        · USB installation</span>
+                    <button onclick="window.print()"
+                        class="no-print grid h-10 w-10 place-items-center rounded-lg border border-[#d8d3c9] bg-white text-[#31362f] transition hover:border-[#e95420] hover:text-[#e95420]"
+                        aria-label="Print or save this guide as a PDF"
+                        title="Print / PDF">
+                        <i data-lucide="printer" class="h-[17px] w-[17px]"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="progress-wrap" class="h-[3px] bg-[#e5e1d8]"><div
+                    id="progress-bar"
+                    class="h-full w-0 bg-[#356b5b] transition-all duration-300"></div></div>
+        </header>
+
+        <div id="top" class="guide-grid border-b border-[#ded9cf]">
+            <section
+                class="mx-auto grid max-w-[1440px] gap-8 px-5 py-12 md:grid-cols-[1.2fr_.8fr] md:px-10 md:py-[76px]">
+                <div class="arrive flex flex-col justify-center">
+                    <p
+                        class="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#356b5b]"><span
+                            class="h-2 w-2 rounded-full bg-[#e95420]"></span>
+                        Complete installation walkthrough</p>
+                    <h1
+                        class="max-w-[720px] font-display text-[clamp(2.5rem,6vw,5.25rem)] font-extrabold leading-[1.02]">Install
+                        Ubuntu.<br><span class="text-[#e95420]">The easy
+                            way.</span></h1>
+                    <p
+                        class="mt-6 max-w-[610px] text-base leading-7 text-[#5d625b] md:text-lg">From
+                        creating a bootable USB to your first Ubuntu desktop
+                        session, follow every essential step in English.</p>
+                    <div class="mt-7 flex flex-wrap gap-3">
+                        <a href="#steps"
+                            class="inline-flex h-12 items-center gap-2 rounded-lg bg-[#20231f] px-5 text-sm font-bold text-white transition hover:bg-[#356b5b]">Get
+                            started <i data-lucide="arrow-down"
+                                class="h-4 w-4"></i></a>
+                        <a href="https://ubuntu.com/download/desktop"
+                            target="_blank" rel="noreferrer"
+                            class="inline-flex h-12 items-center gap-2 rounded-lg border border-[#cbc6bb] bg-[#f9f7f1] px-5 text-sm font-bold text-[#30342f] transition hover:border-[#e95420]">Ubuntu
+                            download <i data-lucide="external-link"
+                                class="h-4 w-4"></i></a>
+                    </div>
+                </div>
+                <div
+                    class="arrive relative min-h-[250px] overflow-hidden rounded-xl bg-[#262a26] p-7 text-white md:min-h-[330px] md:p-9">
+                    <div
+                        class="absolute -right-12 -top-16 h-64 w-64 rounded-full border-[34px] border-[#e95420]/90"></div>
+                    <div
+                        class="absolute -bottom-20 -left-10 h-56 w-56 rounded-full border-[24px] border-[#356b5b]"></div>
+                    <div class="relative flex h-full flex-col justify-between">
+                        <div class="flex items-center justify-between"><span
+                                class="rounded-full border border-white/25 px-3 py-1.5 text-xs font-semibold text-white/75">Get
+                                these ready first</span><i data-lucide="disc-3"
+                                class="h-7 w-7 text-[#ff9b72]"></i></div>
+                        <div class="grid grid-cols-3 gap-3 pt-10">
+                            <div class="border-l-2 border-[#e95420] pl-3"><p
+                                    class="font-display text-2xl font-extrabold">8
+                                    GB+</p><p
+                                    class="mt-1 text-xs text-white/65">USB
+                                    drive</p></div>
+                            <div class="border-l-2 border-[#a5c5a7] pl-3"><p
+                                    class="font-display text-2xl font-extrabold">25
+                                    GB+</p><p
+                                    class="mt-1 text-xs text-white/65">Disk
+                                    space</p></div>
+                            <div class="border-l-2 border-[#e8bd65] pl-3"><p
+                                    class="font-display text-2xl font-extrabold">30
+                                    min</p><p
+                                    class="mt-1 text-xs text-white/65">Typical</p></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <main id="steps"
+            class="mx-auto grid max-w-[1440px] gap-10 px-5 py-10 md:grid-cols-[245px_minmax(0,850px)] md:gap-16 md:px-10 md:py-14">
+            <aside class="no-print md:sticky md:top-[94px] md:h-fit">
+                <div class="mb-5 flex items-center justify-between"><h2
+                        class="font-display text-sm font-extrabold">Guide
+                        steps</h2><span id="progress-label"
+                        class="text-xs font-semibold text-[#74766f]">0 /
+                        10</span></div>
+                <nav aria-label="Installation guide steps"
+                    class="grid grid-cols-2 gap-1 md:grid-cols-1">
+                    <a href="#step-1"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">01
+                        <span class="ml-2">Preparation</span></a>
+                    <a href="#step-2"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">02
+                        <span class="ml-2">ISO download</span></a>
+                    <a href="#step-3"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">03
+                        <span class="ml-2">Create bootable USB</span></a>
+                    <a href="#step-4"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">04
+                        <span class="ml-2">Boot from USB</span></a>
+                    <a href="#step-5"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">05
+                        <span class="ml-2">Start installer</span></a>
+                    <a href="#step-6"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">06
+                        <span class="ml-2">Keyboard / network</span></a>
+                    <a href="#step-7"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">07
+                        <span class="ml-2">Apps and updates</span></a>
+                    <a href="#step-8"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">08
+                        <span class="ml-2">Disk options</span></a>
+                    <a href="#step-9"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">09
+                        <span class="ml-2">Account / location</span></a>
+                    <a href="#step-10"
+                        class="rounded-md px-3 py-2.5 text-sm text-[#555a53] transition hover:bg-white hover:text-[#20231f]">10
+                        <span class="ml-2">Install / restart</span></a>
+                </nav>
+                <div class="mt-6 border-t border-[#d9d4ca] pt-5"><p
+                        class="mb-2 text-xs font-bold uppercase tracking-[0.08em] text-[#767970]">Important
+                        warning</p><p
+                        class="text-xs leading-5 text-[#62665f]">Erasing a disk
+                        can delete all data on it. Back up your files first and
+                        double-check the selected drive.</p></div>
+            </aside>
+
+            <div class="min-w-0">
+                <div class="mb-8 border-b border-[#d9d4ca] pb-5"><p
+                        class="text-xs font-bold uppercase tracking-[0.12em] text-[#e95420]">Ubuntu
+                        Desktop via USB</p><h2
+                        class="mt-2 font-display text-2xl font-extrabold md:text-3xl">10
+                        steps to install Ubuntu</h2><p
+                        class="mt-2 text-sm leading-6 text-[#666a63]">Check each
+                        step when complete. Your progress is saved in this
+                        browser.</p></div>
+                <div class="space-y-4">
+                    <article id="step-1"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">01</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="1">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Prepare your PC and USB drive</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Use a USB drive with at least 8 GB of storage. Keep your laptop plugged in during installation. Copy any important files off the USB first, because creating the installer will erase it.</p><ul
+                                    class="mt-3 space-y-1 text-sm text-[#424740]"><li>• A stable internet connection</li><li>• At least 25 GB of free disk space recommended</li><li>• A backup of important files on another drive or in the cloud</li></ul></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.22.00%20PM.jpeg"
+                                    alt="Provided screenshot for Ubuntu installation step 1"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 01</figcaption></figure></div></article>
+
+                    <article id="step-2"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">02</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="2">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Download the Ubuntu ISO</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Visit the official Ubuntu website and download the latest Desktop LTS release. The filename usually ends in `.iso`. Let the download finish; there is no need to extract the file.</p><a
+                                    class="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#356b5b] underline decoration-[#a8b9aa] underline-offset-4 hover:text-[#e95420]"
+                                    href="https://ubuntu.com/download/desktop"
+                                    target="_blank" rel="noreferrer">Download Ubuntu Desktop from the official site <i
+                                        data-lucide="external-link"
+                                        class="h-3.5 w-3.5"></i></a></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.25.13%20PM.jpeg"
+                                    alt="Provided screenshot for Ubuntu installation step 2"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 02</figcaption></figure></div></article>
+
+                    <article id="step-3"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">03</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="3">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Create a bootable USB drive</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">On Windows, download and open Rufus, select your USB drive, then choose the Ubuntu ISO under Boot selection. For most modern PCs, use `GPT` for Partition scheme and `UEFI` for Target system. Click `Start` and confirm that the USB drive can be erased.</p><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">If prompted for a writing mode, keep the recommended option. Do not remove the USB drive until the process is complete.</p><a
+                                    class="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#356b5b] underline decoration-[#a8b9aa] underline-offset-4"
+                                    href="https://rufus.ie/" target="_blank"
+                                    rel="noreferrer">Rufus official website
+                                    <i data-lucide="external-link"
+                                        class="h-3.5 w-3.5"></i></a></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.25.38%20PM.jpeg"
+                                    alt="Provided screenshot for creating a bootable USB drive"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 03</figcaption></figure></div></article>
+
+                    <article id="step-4"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">04</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="4">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Boot your computer from the USB</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Shut down your computer and plug in the bootable USB. As it powers on, repeatedly press the Boot Menu key. Common keys include `F12`, `F10`, `Esc`, and `F2`; the key varies by manufacturer. Select `UEFI: USB` from the menu.</p><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">If Windows starts instead, restart and try another boot key, or check your computer manufacturer's website for the key for your model.</p></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.26.07%20PM.jpeg"
+                                    alt="Provided screenshot for booting a computer from USB"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 04</figcaption></figure></div></article>
+
+                    <article id="step-5"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">05</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="5">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Open the Ubuntu installer</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Ubuntu will start after the boot menu. On the welcome screen, choose `Try or Install Ubuntu`, then select `Install Ubuntu`. If the desktop appears first, double-click the `Install Ubuntu` icon.</p><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">If the screen looks blank or frozen, wait a few minutes. If the issue continues, restart and select the USB drive from the boot menu again.</p></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.26.31%20PM.jpeg"
+                                    alt="Provided screenshot of the Ubuntu installer welcome screen"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 05</figcaption></figure></div></article>
+
+                    <article id="step-6"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">06</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="6">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Choose your language, keyboard, and network</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Choose your preferred language and keyboard layout, then test the layout. Connecting to Wi-Fi or Ethernet is helpful for downloading updates and drivers. If you do not have internet access, you can usually continue and connect later.</p><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">The order and wording of screens may vary slightly depending on the installer version.</p></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.27.11%20PM.jpeg"
+                                    alt="Provided screenshot of language or keyboard setup"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 06</figcaption></figure></div></article>
+
+                    <article id="step-7"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">07</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="7">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Choose apps and updates</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">The `Normal` option includes common desktop apps; `Minimal` includes only the essentials. If you are online, the installer can download updates. Select the option for third-party graphics or Wi-Fi drivers and media formats only if you want to install them.</p></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.27.48%20PM.jpeg"
+                                    alt="Provided screenshot of the Ubuntu apps and updates options"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 07</figcaption></figure></div></article>
+
+                    <article id="step-8"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">08</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="8">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Choose the installation type and disk</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Choose `Erase disk and install Ubuntu` only if you want Ubuntu to replace everything on the selected disk. This can permanently delete the data currently stored there.</p><div
+                                    class="mt-3 border-l-[3px] border-[#e95420] bg-[#fff5ef] px-4 py-3 text-sm leading-6 text-[#633a29]"><strong>Want to dual boot?</strong> To keep Windows, choose `Install Ubuntu alongside Windows` if that option is available. If it is not available, you are unsure about the partitions, or you have not backed up your data, stop here.</div><p
+                                    class="mt-3 text-sm leading-6 text-[#62665f]">`Something else` is for manual partitioning; use it only if you understand disk partitions. Before confirming, double-check the selected disk's name and capacity.</p></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.28.17%20PM.jpeg"
+                                    alt="Provided screenshot of the Ubuntu disk installation options"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 08</figcaption></figure></div></article>
+
+                    <article id="step-9"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">09</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="9">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Set your location and user account</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Choose your time zone or location. Then enter your name, computer name, username, and a strong password. Keep the password somewhere secure; you will need it to sign in and manage your system.</p><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Review the summary on screen and verify your disk and installation choices one last time.</p></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.28.48%20PM.jpeg"
+                                    alt="Provided screenshot of Ubuntu location and user account setup"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 09</figcaption></figure></div></article>
+
+                    <article id="step-10"
+                        class="step-card rounded-xl border border-[#ded9cf] bg-white p-5 md:p-7"><div
+                            class="grid gap-5 md:grid-cols-[1fr_220px] md:gap-8"><div><div
+                                    class="mb-3 flex items-start justify-between"><span
+                                        class="font-display text-4xl font-extrabold text-[#e95420]">10</span><label
+                                        class="flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#686c65]"><input
+                                            class="step-check h-4 w-4"
+                                            type="checkbox" data-step="10">
+                                        Complete</label></div><h3
+                                    class="font-display text-xl font-extrabold">Install, restart, and remove the USB</h3><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">Click `Install` or `Install Now`. Review the final disk-change confirmation carefully before approving it. Do not turn off your computer while installation is running; it may take some time.</p><p
+                                    class="mt-2 text-sm leading-6 text-[#62665f]">When `Restart Now` appears, restart the computer. Remove the USB drive when prompted, then press Enter. Sign in to Ubuntu with your password.</p></div><figure
+                                class="step-image overflow-hidden rounded-lg p-2"><img
+                                    class="h-36 w-full rounded object-cover"
+                                    src="WhatsApp%20Image%202026-09-30%20at%2010.29.33%20PM.jpeg"
+                                    alt="Provided screenshot of the final Ubuntu installation step"
+                                    loading="lazy"><figcaption
+                                    class="px-1 pt-2 text-[11px] font-semibold text-[#676b64]">Provided screenshot · Step 10</figcaption></figure></div></article>
+                </div>
+
+                <section
+                    class="mt-8 rounded-xl bg-[#263a32] p-6 text-white md:p-8"><div
+                        class="flex items-start gap-4"><span
+                            class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#d9e9dc] text-[#263a32]"><i
+                                data-lucide="circle-check"
+                                class="h-5 w-5"></i></span><div
+                            class="min-w-0"><p
+                                class="text-xs font-bold uppercase tracking-[0.1em] text-[#bcd1be]">After installation</p><h2
+                                class="mt-1 font-display text-xl font-extrabold">Update your system</h2><p
+                                class="mt-2 text-sm leading-6 text-white/75">Connect to the internet once your desktop loads. Open Software Updater to install updates, or run this command in Terminal:</p><pre
+                                class="mt-4 overflow-x-auto rounded-lg bg-[#17261f] px-4 py-3 text-sm leading-6 text-[#e5f0e4]"><code>sudo apt update &amp;&amp; sudo apt upgrade</code></pre><p
+                                class="mt-3 text-xs leading-5 text-white/60">It is normal for password characters not to appear in Terminal. Type your password and press Enter.</p></div></div></section>
+
+                <div
+                    class="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-[#d9d4ca] pt-5 text-xs text-[#74766f]"><p>This guide covers a typical Ubuntu Desktop USB installation. Screens may vary by device and installer version.</p><a
+                        class="inline-flex items-center gap-1 font-bold text-[#356b5b] underline underline-offset-4"
+                        href="https://ubuntu.com/tutorials/install-ubuntu-desktop"
+                        target="_blank" rel="noreferrer">Official Ubuntu tutorial <i data-lucide="external-link"
+                            class="h-3.5 w-3.5"></i></a></div>
+            </div>
+        </main>
+
+        <footer
+            class="border-t border-[#ded9cf] px-5 py-5 text-center text-xs text-[#777a73]">Ubuntu
+            Desktop installation guide · English</footer>
+        <script>
+    lucide.createIcons();
+    const checks = [...document.querySelectorAll('.step-check')];
+    const progressBar = document.querySelector('#progress-bar');
+    const progressLabel = document.querySelector('#progress-label');
+    const storageKey = 'ubuntu-install-guide-progress';
+    let completedSteps = [];
+    try { completedSteps = JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch { completedSteps = []; }
+    function updateProgress() {
+      const completed = checks.filter((check) => check.checked).length;
+      progressLabel.textContent = `${completed} / ${checks.length}`;
+      progressBar.style.width = `${(completed / checks.length) * 100}%`;
+      localStorage.setItem(storageKey, JSON.stringify(checks.filter((check) => check.checked).map((check) => check.dataset.step)));
+    }
+    checks.forEach((check) => {
+      check.checked = completedSteps.includes(check.dataset.step);
+      check.addEventListener('change', updateProgress);
+    });
+    updateProgress();
+  </script>
+    </body>
+</html>

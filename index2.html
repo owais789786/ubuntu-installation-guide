@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VMware Ubuntu Installation Guide</title>
+    <style>
+        :root {
+            --primary-color: #772953; /* Ubuntu Purple */
+            --secondary-color: #E95420; /* Ubuntu Orange */
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+            --card-bg: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .step {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .step h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .step h3 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+
+        .image-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .image-group img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .note strong {
+            color: #856404;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #333;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .step { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VMware Workstation Pro 17 - Ubuntu 26.04 Installation Guide</h1>
+        <p>Follow this guide to easily install Ubuntu.</p>
+    </header>
+
+    <div class="container">
+
+        <!-- STEP 1 -->
+        <div class="step">
+            <h2>Step 1: Create a New Virtual Machine</h2>
+            <p>First, open VMware Workstation and start the process of creating a new virtual machine.</p>
+            
+            <div class="image-group">
+                <img src="images/1.jpg" alt="VMware Home Screen">
+                <p>Open VMware and click on <strong>"Create a New Virtual Machine"</strong>.</p>
+
+                <img src="images/2.jpg" alt="Typical Configuration">
+                <p>Select <strong>"Typical (recommended)"</strong> and click Next.</p>
+
+                <img src="images/3.jpg" alt="Installer Disc Image">
+                <p>Select <strong>"Installer disc image file (iso)"</strong> and browse for your Ubuntu ISO file.</p>
+                
+                <div class="note">
+                    <strong>Note:</strong> If you see a "Cannot read this file" error here, don't worry, it happens sometimes. Just select your ISO file.
+                </div>
+
+                <img src="images/4.jpg" alt="Browse ISO">
+                <p>Select your Ubuntu ISO file (e.g., <em>ubuntu-26.04.1-desktop-amd64.iso</em>) and click Open.</p>
+
+                <img src="images/5.jpg" alt="Easy Install Info">
+                <p>Enter your <strong>Full name, User name, and Password</strong>. This will be your account in Ubuntu.</p>
+
+                <img src="images/6.jpg" alt="Easy Install Filled">
+                <p>Click Next after filling in the details.</p>
+
+                <img src="images/7.jpg" alt="Name the VM">
+                <p>Set the Virtual Machine name (e.g., <em>Ubuntu 64-bit</em>) and location. Click Next.</p>
+
+                <img src="images/8.jpg" alt="Disk Capacity">
+                <p>Set disk capacity to 20 GB and select <strong>"Split virtual disk into multiple files"</strong>. Click Next.</p>
+
+                <img src="images/9.jpg" alt="Ready to Create">
+                <p>Review the settings and click Finish with <strong>"Power on this virtual machine after creation"</strong> checked.</p>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step">
+            <h2>Step 2: VM Boot and Initial Setup</h2>
+            <p>Now your virtual machine will start and Ubuntu will boot.</p>
+            
+            <div class="image-group">
+                <img src="images/10.jpg" alt="Ubuntu Booting">
+                <p>Ubuntu 26.04 is booting. Please wait.</p>
+
+                <img src="images/11.jpg" alt="Boot Log">
+                <p>The boot process is running. (If it says <em>SMBus Host Controller not enabled</em>, it's normal and not a problem).</p>
+
+                <img src="images/12.jpg" alt="Login Screen">
+                <p>When the login screen appears, enter your password or click the login button.</p>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step">
+            <h2>Step 3: Ubuntu Installation Process</h2>
+            <p>Configure the Ubuntu installer step-by-step.</p>
+            
+            <div class="image-group">
+                <img src="images/13.jpg" alt="Choose Language">
+                <p>Select your language (English recommended) and click Next.</p>
+
+                <img src="images/14.jpg" alt="Accessibility">
+                <p>Skip accessibility settings (Click Next).</p>
+
+                <img src="images/15.jpg" alt="Keyboard Layout">
+                <p>Select keyboard layout (English). If prompted to detect, you can select "Yes" or "No".</p>
+
+                <img src="images/16.jpg" alt="Connect Internet">
+                <p>Select <strong>"Use wired connection"</strong> to ensure internet connectivity. Click Next.</p>
+
+                <img src="images/17.jpg" alt="Install Ubuntu">
+                <p>Select <strong>"Install Ubuntu"</strong>. Click Next.</p>
+
+                <img src="images/18.jpg" alt="Interactive Installation">
+                <p>Select <strong>"Interactive installation"</strong>. Click Next.</p>
+
+                <img src="images/19.jpg" alt="Default Selection">
+                <p>Select <strong>"Default selection"</strong> (Basic apps and web browser). Click Next.</p>
+
+                <img src="images/20.jpg" alt="Proprietary Software">
+                <p>Leave both proprietary software options unchecked (or check based on your needs). Click Next.</p>
+
+                <img src="images/21.jpg" alt="Erase Disk">
+                <p>Select <strong>"Erase disk and install Ubuntu"</strong>. (This will only erase your Virtual Machine's disk, not your actual computer). Click Next.</p>
+
+                <img src="images/22.jpg" alt="Encryption">
+                <p>Select <strong>"No encryption"</strong>. Click Next.</p>
+
+                <img src="images/23.jpg" alt="Create Account">
+                <p>Enter your name, computer name, username, and password. (If you see a "Weak password" warning, that's fine, you can also use a strong password). Click Next.</p>
+
+                <img src="images/24.jpg" alt="Timezone">
+                <p>Select your timezone (e.g., Lahore/Karachi, Pakistan). Click Next.</p>
+
+                <img src="images/25.jpg" alt="Review Choices">
+                <p>Review your settings and click the <strong>"Install"</strong> button.</p>
+            </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step">
+            <h2>Step 4: Installation Complete</h2>
+            <p>Files will now start copying. This can take 10 to 15 minutes.</p>
+            
+            <div class="image-group">
+                <img src="images/26.jpg" alt="Copying Files">
+                <p>Ubuntu is copying files. Keep an eye on the progress bar.</p>
+
+                <img src="images/27.jpg" alt="Welcome Terminal">
+                <p>Once installation is complete, the system will restart and the terminal will show <strong>"Welcome to Ubuntu 26.04.1 LTS!"</strong>.</p>
+
+                <img src="images/28.jpg" alt="Boot Services">
+                <p>System services are starting. Please wait.</p>
+
+                <img src="images/29.jpg" alt="Final Boot">
+                <p>Congratulations! Your Ubuntu VM is ready. You can now use it.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Generated Guide for VMware Workstation Ubuntu Installation</p>
+        <p>© 2026</p>
+    </footer>
+
+</body>
+</html>
